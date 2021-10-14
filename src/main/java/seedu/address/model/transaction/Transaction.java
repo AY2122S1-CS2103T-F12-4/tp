@@ -10,8 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Transaction {
 
     public static final String MESSAGE_CONSTRAINTS = "Transaction amount should be numeric, and can have up to 2"
-            + "decimal places";
-    public static final String VALIDATION_REGEX = "^\\d+\\.\\d{0,2}$";
+            + " decimal places";
+    public static final String VALIDATION_REGEX = "\\d*\\.\\d{2}$";
 
     public final String transactionAmount;
 
