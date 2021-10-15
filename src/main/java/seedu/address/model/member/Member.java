@@ -84,6 +84,10 @@ public class Member {
         return Collections.unmodifiableSet(transactions);
     }
 
+    public void addTransactions(Set<Transaction> newTrans) {
+        transactions.addAll(newTrans);
+    }
+
     /**
      * Returns true if both members have the same id, phone or email.
      * This defines a weaker notion of equality between two members.

@@ -3,11 +3,14 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.member.Id;
 import seedu.address.model.member.Member;
 import seedu.address.model.member.UniqueMemberList;
+import seedu.address.model.transaction.Transaction;
 
 /**
  * Wraps all data at the ezFoodie level
@@ -15,116 +18,125 @@ import seedu.address.model.member.UniqueMemberList;
  */
 public class EzFoodie implements ReadOnlyEzFoodie {
 
-    private final UniqueMemberList members;
+	private final UniqueMemberList members;
 
-    /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
-     */
-    {
-        members = new UniqueMemberList();
-    }
+	/*
+	 * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
+	 * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
+	 *
+	 * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
+	 *   among constructors.
+	 */ {
+		members = new UniqueMemberList();
+	}
 
-    public EzFoodie() {}
+	public EzFoodie() {
+	}
 
-    /**
-     * Creates an ezFoodie using the Members in the {@code toBeCopied}
-     */
-    public EzFoodie(ReadOnlyEzFoodie toBeCopied) {
-        this();
-        resetData(toBeCopied);
-    }
+	/**
+	 * Creates an ezFoodie using the Members in the {@code toBeCopied}
+	 */
+	public EzFoodie(ReadOnlyEzFoodie toBeCopied) {
+		this();
+		resetData(toBeCopied);
+	}
 
-    //// list overwrite operations
+	//// list overwrite operations
 
-    /**
-     * Replaces the contents of the member list with {@code members}.
-     * {@code members} must not contain duplicate members.
-     */
-    public void setMembers(List<Member> members) {
-        this.members.setMembers(members);
-    }
+	/**
+	 * Replaces the contents of the member list with {@code members}.
+	 * {@code members} must not contain duplicate members.
+	 */
+	public void setMembers(List<Member> members) {
+		this.members.setMembers(members);
+	}
 
-    /**
-     * Resets the existing data of this {@code EzFoodie} with {@code newData}.
-     */
-    public void resetData(ReadOnlyEzFoodie newData) {
-        requireNonNull(newData);
+	/**
+	 * Resets the existing data of this {@code EzFoodie} with {@code newData}.
+	 */
+	public void resetData(ReadOnlyEzFoodie newData) {
+		requireNonNull(newData);
 
-        setMembers(newData.getMemberList());
-    }
+		setMembers(newData.getMemberList());
+	}
 
-    //// member-level operations
+	//// member-level operations
 
-    /**
-     * Returns true if a member with the same identity as {@code member} exists in the ezFoodie.
-     */
-    public boolean hasMember(Member member) {
-        requireNonNull(member);
-        return members.contains(member);
-    }
+	/**
+	 * Returns true if a member with the same identity as {@code member} exists in the ezFoodie.
+	 */
+	public boolean hasMember(Member member) {
+		requireNonNull(member);
+		return members.contains(member);
+	}
 
-    /**
-     * Returns true if a member with the same identity as {@code member} exists in the filtered ezFoodie.
-     * {@code predicate} is the filter condition for the filtered ezFoodie.
-     */
-    public boolean hasMember(Member member, Predicate<Member> predicate) {
-        requireNonNull(member);
-        return members.contains(member, predicate);
-    }
+	/**
+	 * Returns true if a member with the same identity as {@code member} exists in the filtered ezFoodie.
+	 * {@code predicate} is the filter condition for the filtered ezFoodie.
+	 */
+	public boolean hasMember(Member member, Predicate<Member> predicate) {
+		requireNonNull(member);
+		return members.contains(member, predicate);
+	}
 
-    /**
-     * Adds a member to the ezFoodie.
-     * The member must not already exist in the ezFoodie.
-     */
-    public void addMember(Member p) {
-        members.add(p);
-    }
+	/**
+	 * Adds a member to the ezFoodie.
+	 * The member must not already exist in the ezFoodie.
+	 */
+	public void addMember(Member p) {
+		members.add(p);
+	}
 
-    /**
-     * Replaces the given member {@code target} in the list with {@code editedMember}.
-     * {@code target} must exist in the ezFoodie.
-     * The member identity of {@code editedMember} must not be the same as another existing member in the ezFoodie.
-     */
-    public void setMember(Member target, Member editedMember) {
-        requireNonNull(editedMember);
+	/**
+	 * Adds a transaction to the ezFoodie.
+	 */
+	public void addTransaction(Set<Transaction> transactions, Id id) {
+		Member memberToEdit = members.getMemberById(id);
+		Member editedMember = members.createAddedTransactionMember(memberToEdit, transactions);
+		setMember(memberToEdit, editedMember);
+	}
 
-        members.setMember(target, editedMember);
-    }
+	/**
+	 * Replaces the given member {@code target} in the list with {@code editedMember}.
+	 * {@code target} must exist in the ezFoodie.
+	 * The member identity of {@code editedMember} must not be the same as another existing member in the ezFoodie.
+	 */
+	public void setMember(Member target, Member editedMember) {
+		requireNonNull(editedMember);
 
-    /**
-     * Removes {@code key} from this {@code EzFoodie}.
-     * {@code key} must exist in the ezFoodie.
-     */
-    public void removeMember(Member key) {
-        members.remove(key);
-    }
+		members.setMember(target, editedMember);
+	}
 
-    //// util methods
+	/**
+	 * Removes {@code key} from this {@code EzFoodie}.
+	 * {@code key} must exist in the ezFoodie.
+	 */
+	public void removeMember(Member key) {
+		members.remove(key);
+	}
 
-    @Override
-    public String toString() {
-        return members.asUnmodifiableObservableList().size() + " members";
-        // TODO: refine later
-    }
+	//// util methods
 
-    @Override
-    public ObservableList<Member> getMemberList() {
-        return members.asUnmodifiableObservableList();
-    }
+	@Override
+	public String toString() {
+		return members.asUnmodifiableObservableList().size() + " members";
+		// TODO: refine later
+	}
 
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof EzFoodie // instanceof handles nulls
-                && members.equals(((EzFoodie) other).members));
-    }
+	@Override
+	public ObservableList<Member> getMemberList() {
+		return members.asUnmodifiableObservableList();
+	}
 
-    @Override
-    public int hashCode() {
-        return members.hashCode();
-    }
+	@Override
+	public boolean equals(Object other) {
+		return other == this // short circuit if same object
+				|| (other instanceof EzFoodie // instanceof handles nulls
+				&& members.equals(((EzFoodie) other).members));
+	}
+
+	@Override
+	public int hashCode() {
+		return members.hashCode();
+	}
 }

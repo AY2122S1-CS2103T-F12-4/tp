@@ -13,7 +13,7 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.ExecutionStatus;
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddMemberCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.member.Address;
@@ -29,7 +29,7 @@ import seedu.address.model.transaction.Transaction;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddCommandParser implements Parser<AddCommand> {
+public class AddMemberCommandParser implements Parser<AddMemberCommand> {
 
     private static final String ID_STUB = "00001";
     private static final String REGISTRATION_TIMESTAMP_STUB = "1609459200000";
@@ -40,7 +40,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     /**
      * Constructs a {@code AddCommandParser} with the given {@code Model} and {@code ExecutionStatus}.
      */
-    public AddCommandParser(Model model, ExecutionStatus executionStatus) {
+    public AddMemberCommandParser(Model model, ExecutionStatus executionStatus) {
         this.model = model;
         this.executionStatus = executionStatus;
     }
@@ -71,14 +71,14 @@ public class AddCommandParser implements Parser<AddCommand> {
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddCommand parse(String args) throws ParseException {
+    public AddMemberCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                         PREFIX_ADDRESS, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMemberCommand.MESSAGE_USAGE));
         }
 
         Id id = executionStatus == ExecutionStatus.NORMAL
@@ -97,7 +97,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Member member = new Member(id, name, phone, email, address, registrationTimestamp, tagList, transactionList);
 
-        return new AddCommand(member);
+        return new AddMemberCommand(member);
     }
 
     /**

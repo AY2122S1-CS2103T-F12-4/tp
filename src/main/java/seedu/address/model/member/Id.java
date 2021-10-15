@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Member's id in the ezFoodie.
  * Guarantees: immutable; is valid as declared in {@link #isValidId(String)}
  */
-public class Id {
+public class Id implements Comparable<Id> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Ids should only contain 5 digits, and it should not be blank";
@@ -52,4 +52,10 @@ public class Id {
         return value.hashCode();
     }
 
+    @Override
+    public int compareTo(Id comparedId){
+        int parsedId = Integer.parseInt(value);
+        int parsedComparedId = Integer.parseInt(comparedId.value);
+        return parsedId - parsedComparedId;
+    }
 }

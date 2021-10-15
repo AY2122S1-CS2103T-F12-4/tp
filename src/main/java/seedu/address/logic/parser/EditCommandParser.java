@@ -59,6 +59,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             editMemberDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editMemberDescriptor::setTags);
+
         parseTransactionsForEdit(argMultimap.getAllValues(PREFIX_TRANSACTION))
                 .ifPresent(editMemberDescriptor::setTransactions);
 

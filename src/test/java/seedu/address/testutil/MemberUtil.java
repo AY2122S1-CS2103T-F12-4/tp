@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddMemberCommand;
 import seedu.address.logic.commands.EditCommand.EditMemberDescriptor;
 import seedu.address.model.member.Member;
 import seedu.address.model.tag.Tag;
@@ -22,7 +22,7 @@ public class MemberUtil {
      * Returns an add command string for adding the {@code member}.
      */
     public static String getAddCommand(Member member) {
-        return AddCommand.COMMAND_WORD + " " + getMemberDetails(member);
+        return AddMemberCommand.COMMAND_WORD + " " + getMemberDetails(member);
     }
 
     /**

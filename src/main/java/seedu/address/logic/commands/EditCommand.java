@@ -103,6 +103,8 @@ public class EditCommand extends Command {
         Address updatedAddress = editMemberDescriptor.getAddress().orElse(memberToEdit.getAddress());
         RegistrationTimestamp registrationTimestamp = memberToEdit.getRegistrationTimestamp();
         Set<Tag> updatedTags = editMemberDescriptor.getTags().orElse(memberToEdit.getTags());
+
+        // todo: need to change logic for transaction
         Set<Transaction> updatedTransactions = editMemberDescriptor.getTransactions()
                 .orElse((memberToEdit.getTransactions()));
 
