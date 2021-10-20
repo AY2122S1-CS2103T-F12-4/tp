@@ -25,7 +25,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.member.Member;
 import seedu.address.testutil.MemberBuilder;
 
-public class AddCommandTest {
+public class AddMemberCommandTest {
 
     @Test
     public void constructor_nullMember_throwsNullPointerException() {
