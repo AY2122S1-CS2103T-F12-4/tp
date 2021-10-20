@@ -13,12 +13,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TRANSACTION;
 public class AddTransactionCommand extends AddCommand{
 	public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a transaction to the ezFoodie. "
 			+ "Parameters: "
-			+ PREFIX_ID + "ID"
-			+ "[" + PREFIX_TRANSACTION + "TRANSACTION AMOUNT(STRICTLY 2 DECIMAL PLACES)]...\n"
+			+ "[" + PREFIX_TRANSACTION + "TRANSACTION AMOUNT(STRICTLY 2 DECIMAL PLACES)]..."
+			+ PREFIX_ID + "ID\n"
 			+ "Example: " + COMMAND_WORD + " "
-			+ PREFIX_ID + "00001 "
 			+ PREFIX_TRANSACTION + "23.00 "
-			+ PREFIX_TRANSACTION + "988.56";
+			+ PREFIX_TRANSACTION + "988.56 "
+			+ PREFIX_ID + "00001";
 
 	// todo: need to work on this
 	public static final String MESSAGE_SUCCESS = "New transaction added.";
