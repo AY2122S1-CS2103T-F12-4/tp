@@ -5,12 +5,14 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.member.exceptions.DuplicateMemberException;
 import seedu.address.model.member.exceptions.MemberNotFoundException;
+import seedu.address.model.transaction.Transaction;
 
 /**
  * A list of members that enforces uniqueness between its elements and does not allow nulls.
@@ -117,6 +119,29 @@ public class UniqueMemberList implements Iterable<Member> {
     @Override
     public Iterator<Member> iterator() {
         return internalList.iterator();
+    }
+
+    /**
+     * Returns a member identified by id.
+     * @param id
+     * @return member
+     */
+    public Member getMemberById(Id id) throws MemberNotFoundException {
+        for (Member entry : internalList) {
+            if (entry.getId().equals(id)) {
+                return entry;
+            }
+        }
+        throw new MemberNotFoundException();
+    }
+
+    /**
+     * Returns a new member with added transactions.
+     */
+    public Member createAddedTransactionMember(Member member, Set<Transaction> transactions) {
+        Member outputMember = member;
+        outputMember.addTransactions(transactions);
+        return outputMember;
     }
 
     @Override
