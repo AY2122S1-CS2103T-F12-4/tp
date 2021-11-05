@@ -86,21 +86,21 @@ public class TypicalMembers {
             .withPhone("87652533").withEmail("cornelia@example.com").withAddress("10th street")
             .withTimestamp("1609470000000").withCredit("0").withPoint("0").withTags("friends").build();
     public static final Member ELLE = new MemberBuilder().withId("00005").withName("Elle Meyer")
-            .withPhone("9482224").withEmail("werner@example.com").withAddress("michegan ave")
+            .withPhone("94821224").withEmail("werner@example.com").withAddress("michegan ave")
             .withTimestamp("1609473600000").withCredit("0").withPoint("0").build();
     public static final Member FIONA = new MemberBuilder().withId("00006").withName("Fiona Kunz")
-            .withPhone("9482427").withEmail("lydia@example.com").withAddress("little tokyo")
+            .withPhone("94824427").withEmail("lydia@example.com").withAddress("little tokyo")
             .withTimestamp("1609477200000").withCredit("0").withPoint("0").build();
     public static final Member GEORGE = new MemberBuilder().withId("00007").withName("George Best")
-            .withPhone("9482442").withEmail("anna@example.com").withAddress("4th street")
+            .withPhone("94821442").withEmail("anna@example.com").withAddress("4th street")
             .withTimestamp("1609480800000").withCredit("0").withPoint("0").build();
 
     // Manually added
     public static final Member HOON = new MemberBuilder().withId("00008").withName("Hoon Meier")
-            .withPhone("8482424").withEmail("stefan@example.com").withAddress("little india")
+            .withPhone("84824241").withEmail("stefan@example.com").withAddress("little india")
             .withTimestamp("1609484400000").withCredit("0").withPoint("0").build();
     public static final Member IDA = new MemberBuilder().withId("00009").withName("Ida Mueller")
-            .withPhone("8482131").withEmail("hans@example.com").withAddress("chicago ave")
+            .withPhone("84821314").withEmail("hans@example.com").withAddress("chicago ave")
             .withTimestamp("1609488000000").withCredit("0").withPoint("0").build();
 
     // Manually added - Member's details found in {@code CommandTestUtil}
