@@ -54,7 +54,7 @@ public class RedeemCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_REDEEM + " 100 "
             + PREFIX_INDEX + " 1\n";
-
+    
     /**
      * Stands for message for redeem points successfully.
      */
